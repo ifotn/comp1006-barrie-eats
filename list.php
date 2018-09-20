@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dropdown Test</title>
+    <title>List Test</title>
 </head>
 <body>
 <?php
@@ -18,14 +18,14 @@ $cmd->execute();
 $restaurants = $cmd->fetchAll();
 
 // create dropdown list
-echo '<select name="name">';
+echo '<ul style="display:inline-block;">';
 
 foreach ($restaurants as $r) {
-    echo '<option>' . $r['name'] . '</option>';
+    echo '<li><a href="#">' . $r['name'] . '</a></li>';
 }
 
 // close list
-echo '</select>';
+echo '</ul>';
 
 // disconnect
 $db = null;

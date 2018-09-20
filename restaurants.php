@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Restaurants</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 <body>
 <h1>Restaurants</h1>
@@ -10,6 +11,8 @@
 <?php
 // connect
 $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+//$db = new PDO('mysql:host=aws.computerstudi.es;dbname=gcxxxxxxxxx', 'gcxxxxxxxxx', 'awspass');
+
 
 // set up query
 $sql = "SELECT * FROM restaurants";
@@ -20,7 +23,7 @@ $cmd->execute();
 $restaurants = $cmd->fetchAll();
 
 // start the table
-echo '<table border="1"><thead><th>Name</th><th>Address</th><th>Phone</th></thead>';
+echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th><th>Phone</th></thead>';
 
 // loop through the data & show each restaurant on a new row
 foreach ($restaurants as $r) {
