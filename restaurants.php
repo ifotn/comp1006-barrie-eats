@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 <body>
+<a href="restaurant.php">Add a New Restaurant</a>
 <h1>Restaurants</h1>
 
 <?php
