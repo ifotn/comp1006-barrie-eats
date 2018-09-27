@@ -12,7 +12,7 @@ $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
 // set up query
 $sql = "SELECT name FROM restaurants ORDER BY name";
 
-// execute & store the result
+// execute & store the result in a variable
 $cmd = $db->prepare($sql);
 $cmd->execute();
 $restaurants = $cmd->fetchAll();
