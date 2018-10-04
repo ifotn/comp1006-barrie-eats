@@ -25,15 +25,17 @@ $restaurants = $cmd->fetchAll();
 
 // start the table
 echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th>
-<th>Phone</th><th>Actions</th></thead>';
+<th>Phone</th><th>Type</th><th>Actions</th></thead>';
 
 // loop through the data & show each restaurant on a new row
 foreach ($restaurants as $r) {
     echo "<tr><td> {$r['name']} </td>
         <td> {$r['address']} </td>
         <td> {$r['phone']} </td>
-        <td><a href=\"delete-restaurant.php?restaurantId={$r['restaurantId']}\" 
-        class=\"text-danger\">Delete</a></td></tr>";
+        <td> {$r['restaurantType']} </td>
+        <td><a href=\"restaurant.php?restaurantId={$r['restaurantId']}\">Edit</a> | 
+        <a href=\"delete-restaurant.php?restaurantId={$r['restaurantId']}\" 
+        class=\"text-danger confirmation\">Delete</a></td></tr>";
 }
 
 // close the table
@@ -42,6 +44,11 @@ echo '</table>';
 // disconnect
 $db = null;
 ?>
+
+<!-- js -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/scripts.js"></script>
+
 
 </body>
 </html>

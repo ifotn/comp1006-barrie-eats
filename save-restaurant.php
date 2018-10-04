@@ -12,6 +12,7 @@ $name = $_POST['name'];
 $address = $_POST['address'];
 $phone = $_POST['phone'];
 $restaurantType = $_POST['restaurantType'];
+$restaurantId = $_POST['restaurantId'];
 
 // validate each input
 $ok = true;
@@ -41,21 +42,31 @@ if ($ok) {
     // connect to the database with server, username, password, dbname
     $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
 
-    // set up and execute an INSERT command
-    $sql = "INSERT INTO restaurants (name, address, phone, restaurantType) 
+    // set up and execute an INSERT or UPDATE command
+    if (empty($restaurantId)) {
+        $sql = "INSERT INTO restaurants (name, address, phone, restaurantType) 
     VALUES (:name, :address, :phone, :restaurantType)";
+    }
+    else {
+        $sql = "UPDATE restaurants SET name = :name, address = :address, phone = :phone,
+restaurantType = :restaurantType WHERE restaurantId = :restaurantId";
+    }
 
     $cmd = $db->prepare($sql);
     $cmd->bindParam(':name', $name, PDO::PARAM_STR, 60);
     $cmd->bindParam(':address', $address, PDO::PARAM_STR, 120);
     $cmd->bindParam(':phone', $phone, PDO::PARAM_STR, 15);
     $cmd->bindParam(':restaurantType', $restaurantType, PDO::PARAM_STR, 50);
+
+    if (!empty($restaurantId)) {
+        $cmd->bindParam(':restaurantId', $restaurantId, PDO::PARAM_INT);
+    }
     $cmd->execute();
 
     // disconnect
     $db = null;
 
-    echo "Restaurant Saved";
+    header('location:restaurants.php');
 }
 ?>
 
