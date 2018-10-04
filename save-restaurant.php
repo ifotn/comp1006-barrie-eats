@@ -31,6 +31,11 @@ if (empty($phone)) {
     $ok = false;
 }
 
+if ($restaurantType == '-Select-') {
+    echo "Type is Required.<br />";
+    $ok = false;
+}
+
 // only save if no validation errors
 if ($ok) {
     // connect to the database with server, username, password, dbname

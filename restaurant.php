@@ -28,6 +28,7 @@
     <fieldset>
         <label for="restaurantType" class="col-md-1">Type: </label>
         <select name="restaurantType" id="restaurantType">
+            <option>-Select-</option>
             <?php
             // connect
             $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');

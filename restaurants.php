@@ -24,13 +24,16 @@ $cmd->execute();
 $restaurants = $cmd->fetchAll();
 
 // start the table
-echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th><th>Phone</th></thead>';
+echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th>
+<th>Phone</th><th>Actions</th></thead>';
 
 // loop through the data & show each restaurant on a new row
 foreach ($restaurants as $r) {
-    echo '<tr><td>' . $r['name'] .
-        '</td><td>' . $r['address'] .
-        '</td><td>' . $r['phone'] . '</td></tr>';
+    echo "<tr><td> {$r['name']} </td>
+        <td> {$r['address']} </td>
+        <td> {$r['phone']} </td>
+        <td><a href=\"delete-restaurant.php?restaurantId={$r['restaurantId']}\" 
+        class=\"text-danger\">Delete</a></td></tr>";
 }
 
 // close the table
