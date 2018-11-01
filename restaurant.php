@@ -92,5 +92,29 @@ if (!empty($_GET['restaurantId'])) {
     <button class="col-md-offset-1 btn btn-primary">Save</button>
     <input type="hidden" name="restaurantId" id="restaurantId" value="<?php echo $restaurantId; ?>" />
 </form>
+
+<?php
+
+if (isset($restaurantId)) {
+    $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+    $sql = "SELECT * FROM Reviews WHERE restaurant = :name";
+    $cmd = $db->prepare($sql);
+    $cmd->bindParam(':name', $name, PDO::PARAM_STR, 60);
+    $cmd->execute();
+    $reviews = $cmd->fetchAll();
+
+    echo "<h2>Reviews</h2>";
+
+    foreach($reviews as $r) {
+        echo "<div class=\"panel panel-primary\"><h3 class=\"panel-heading\"> {$r["username"]} </h3>
+            <div class=\"panel-body\"><h4> {$r["rating"]} Stars - {$r["reviewDate"]} </h4>
+            <p> {$r["comments"]} </p></div>";
+    }
+    
+    $db = null;
+}
+
+
+?>
 </body>
 </html>
