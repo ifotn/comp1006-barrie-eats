@@ -47,6 +47,7 @@ if ($ok) {
     $db = null;
 
     // redirect to login
+    header('location:login.php');
 }
 ?>
 

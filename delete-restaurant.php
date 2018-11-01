@@ -7,6 +7,13 @@
 <body>
 
 <?php
+// auth check
+session_start();
+if (empty($_SESSION['userId'])) {
+    header('location:login.php');
+    exit();
+}
+
 // GET selected restaurantId
 $restaurantId = $_GET['restaurantId'];
 

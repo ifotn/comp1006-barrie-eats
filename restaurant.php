@@ -1,4 +1,12 @@
 <?php
+
+// auth check
+session_start();
+if (empty($_SESSION['userId'])) {
+    header('location:login.php');
+    exit();
+}
+
 // initialize variables
 $name = null;
 $address = null;
@@ -42,7 +50,7 @@ if (!empty($_GET['restaurantId'])) {
 <body>
 
 <a href="restaurants.php">View Restaurants</a>
-
+<a href="logout.php">Logout</a>
 <h1>Restaurant Details</h1>
 
 <form method="post" action="save-restaurant.php">

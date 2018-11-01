@@ -7,6 +7,13 @@
 <body>
 
 <?php
+// auth check
+session_start();
+if (empty($_SESSION['userId'])) {
+    header('location:login.php');
+    exit();
+}
+
 // introduce variables to store the form input values
 $name = $_POST['name'];
 $address = $_POST['address'];

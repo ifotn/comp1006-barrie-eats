@@ -6,7 +6,17 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 <body>
-<a href="restaurant.php">Add a New Restaurant</a>
+<?php
+// access the current session
+session_start();
+
+if (isset($_SESSION['userId'])) {
+    echo '<a href="restaurant.php">Add a New Restaurant</a> ';
+    echo '<a href="logout.php">Logout</a>';
+}
+
+?>
+
 <h1>Restaurants</h1>
 
 <?php
@@ -25,17 +35,29 @@ $restaurants = $cmd->fetchAll();
 
 // start the table
 echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th>
-<th>Phone</th><th>Type</th><th>Actions</th></thead>';
+<th>Phone</th><th>Type</th>';
+
+if (isset($_SESSION['userId'])) {
+    echo '<th>Actions</th>';
+}
+
+
+echo '</thead>';
 
 // loop through the data & show each restaurant on a new row
 foreach ($restaurants as $r) {
     echo "<tr><td> {$r['name']} </td>
         <td> {$r['address']} </td>
         <td> {$r['phone']} </td>
-        <td> {$r['restaurantType']} </td>
-        <td><a href=\"restaurant.php?restaurantId={$r['restaurantId']}\">Edit</a> | 
-        <a href=\"delete-restaurant.php?restaurantId={$r['restaurantId']}\" 
-        class=\"text-danger confirmation\">Delete</a></td></tr>";
+        <td> {$r['restaurantType']} </td>";
+
+        if (isset($_SESSION['userId'])) {
+            echo "<td><a href=\"restaurant.php?restaurantId={$r['restaurantId']}\">Edit</a> | 
+            <a href=\"delete-restaurant.php?restaurantId={$r['restaurantId']}\" 
+            class=\"text-danger confirmation\">Delete</a></td>";
+        }
+
+        echo "</tr>";
 }
 
 // close the table
