@@ -34,7 +34,7 @@ if ($ok) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // connect
-    $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+    require('db.php');
 
     // set up & execute the insert
     $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";

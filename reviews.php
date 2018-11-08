@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Restaurants</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-</head>
-<body>
+<?php
+$title = "Reviews";
+require('header.php');
+?>
+
 <a href="review.php">Add a New Review</a>
 <h1>Reviews</h1>
 
 <?php
 // connect
-$db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+require('db.php');
 //$db = new PDO('mysql:host=aws.computerstudi.es;dbname=gcxxxxxxxxx', 'gcxxxxxxxxx', 'awspass');
 
 

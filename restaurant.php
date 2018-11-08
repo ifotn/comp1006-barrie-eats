@@ -1,11 +1,5 @@
 <?php
-
-// auth check
-session_start();
-if (empty($_SESSION['userId'])) {
-    header('location:login.php');
-    exit();
-}
+require('auth.php');
 
 // initialize variables
 $name = null;
@@ -19,7 +13,7 @@ if (!empty($_GET['restaurantId'])) {
     $restaurantId = $_GET['restaurantId'];
 
     // connect
-    $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+    require('db.php');
 
     // set up and execute query
     $sql = "SELECT * FROM restaurants WHERE restaurantId = :restaurantId";

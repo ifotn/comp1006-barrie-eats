@@ -39,7 +39,7 @@ if ($restaurant == '-Select-') {
 // only save if no validation errors
 if ($ok) {
     // connect to the database with server, username, password, dbname
-    $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+    require('db.php');
 
     // set up and execute an INSERT or UPDATE command
 

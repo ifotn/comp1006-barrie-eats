@@ -7,12 +7,7 @@
 <body>
 
 <?php
-// auth check
-session_start();
-if (empty($_SESSION['userId'])) {
-    header('location:login.php');
-    exit();
-}
+require('auth.php');
 
 // GET selected restaurantId
 $restaurantId = $_GET['restaurantId'];
@@ -22,7 +17,7 @@ if (empty($restaurantId)) {
 }
 
 // connect
-$db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+require('db.php');
 
 // set up and execute SQL DELETE command
 $sql = "DELETE FROM restaurants WHERE restaurantId = :restaurantId";

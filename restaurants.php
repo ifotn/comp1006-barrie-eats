@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Restaurants</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-</head>
-<body>
 <?php
+$title = "Restaurants";
+require('header.php');
+
 // access the current session
 session_start();
 
@@ -21,7 +16,7 @@ if (isset($_SESSION['userId'])) {
 
 <?php
 // connect
-$db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+require('db.php');
 //$db = new PDO('mysql:host=aws.computerstudi.es;dbname=gcxxxxxxxxx', 'gcxxxxxxxxx', 'awspass');
 
 

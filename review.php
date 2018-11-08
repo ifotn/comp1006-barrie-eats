@@ -31,7 +31,7 @@
             <option>-Select-</option>
             <?php
             // connect
-            $db = new PDO('mysql:host=localhost;dbname=barrieEats', 'root', '');
+            require('db.php');
 
             // set up query
             $sql = "SELECT name FROM restaurants ORDER BY name";
