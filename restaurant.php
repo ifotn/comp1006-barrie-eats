@@ -1,4 +1,7 @@
 <?php
+$title = "Restaurant Details";
+require('header.php');
+
 require('auth.php');
 
 // initialize variables
@@ -33,18 +36,6 @@ if (!empty($_GET['restaurantId'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Restaurant Details</title>
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-</head>
-<body>
-
-<a href="restaurants.php">View Restaurants</a>
-<a href="logout.php">Logout</a>
 <h1>Restaurant Details</h1>
 
 <form method="post" action="save-restaurant.php">

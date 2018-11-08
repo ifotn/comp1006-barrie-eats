@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete Restaurant</title>
-</head>
-<body>
-
 <?php
+require('header.php');
 require('auth.php');
 
 // GET selected restaurantId
