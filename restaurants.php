@@ -27,7 +27,7 @@ try {
 
     // start the table
     echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th>
-    <th>Phone</th><th>Type</th>';
+    <th>Phone</th><th>Type</th><th>Logo</th>';
 
     if (isset($_SESSION['userId'])) {
         echo '<th>Actions</th>';
@@ -41,7 +41,14 @@ try {
         echo "<tr><td> {$r['name']} </td>
             <td> {$r['address']} </td>
             <td> {$r['phone']} </td>
-            <td> {$r['restaurantType']} </td>";
+            <td> {$r['restaurantType']} </td>
+            <td>";
+
+        if (isset($r['logo'])) {
+            echo "<img src=\"img/{$r['logo']}\" alt=\"Logo\" height=\"50px\" />";
+        }
+
+        echo "</td>";
 
         if (isset($_SESSION['userId'])) {
             echo "<td><a href=\"restaurant.php?restaurantId={$r['restaurantId']}\">Edit</a> | 

@@ -10,6 +10,7 @@ $address = null;
 $phone = null;
 $restaurantType = null;
 $restaurantId = null;
+$logo = null;
 
 // was an existing Id passed to this page?  If so, select the matching record from the db
 if (!empty($_GET['restaurantId'])) {
@@ -30,6 +31,7 @@ if (!empty($_GET['restaurantId'])) {
     $address = $r['address'];
     $phone = $r['phone'];
     $restaurantType = $r['restaurantType'];
+    $logo = $r['logo'];
 
     // disconnect
     $db = null;
@@ -38,7 +40,7 @@ if (!empty($_GET['restaurantId'])) {
 
 <h1>Restaurant Details</h1>
 
-<form method="post" action="save-restaurant.php">
+<form method="post" action="save-restaurant.php" enctype="multipart/form-data">
     <fieldset>
         <label for="name" class="col-md-1">Name: </label>
         <input name="name" id="name" required value="<?php echo $name; ?>" />
@@ -82,6 +84,17 @@ if (!empty($_GET['restaurantId'])) {
             ?>
         </select>
     </fieldset>
+    <fieldset>
+        <label for="logo" class="col-md-1">Logo:</label>
+        <input type="file" name="logo" id="logo" />
+    </fieldset>
+    <div class="col-md-offset-1">
+        <?php
+        if (isset($logo)) {
+            echo "<img src=\"img/$logo\" alt=\"Logo\" />";
+        }
+        ?>
+    </div>
     <button class="col-md-offset-1 btn btn-primary">Save</button>
     <input type="hidden" name="restaurantId" id="restaurantId" value="<?php echo $restaurantId; ?>" />
 </form>
