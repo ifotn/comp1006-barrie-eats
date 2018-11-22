@@ -26,8 +26,8 @@ try {
     $restaurants = $cmd->fetchAll();
 
     // start the table
-    echo '<table class="table table-striped table-hover"><thead><th>Name</th><th>Address</th>
-    <th>Phone</th><th>Type</th><th>Logo</th>';
+    echo '<table class="table table-striped table-hover sortable"><thead><th>Name</th><th></th><th>Address</th>
+    <th>Phone</th><th>Type</th>';
 
     if (isset($_SESSION['userId'])) {
         echo '<th>Actions</th>';
@@ -38,17 +38,15 @@ try {
 
     // loop through the data & show each restaurant on a new row
     foreach ($restaurants as $r) {
-        echo "<tr><td> {$r['name']} </td>
-            <td> {$r['address']} </td>
-            <td> {$r['phone']} </td>
-            <td> {$r['restaurantType']} </td>
-            <td>";
+        echo "<tr><td> {$r['name']} </td>";
 
         if (isset($r['logo'])) {
-            echo "<img src=\"img/{$r['logo']}\" alt=\"Logo\" height=\"50px\" />";
+            echo "<td><img src=\"img/{$r['logo']}\" alt=\"Logo\" height=\"50px\" /></td>";
         }
 
-        echo "</td>";
+        echo "<td> {$r['address']} </td>
+            <td> {$r['phone']} </td>
+            <td> {$r['restaurantType']} </td>";
 
         if (isset($_SESSION['userId'])) {
             echo "<td><a href=\"restaurant.php?restaurantId={$r['restaurantId']}\">Edit</a> | 
@@ -77,6 +75,8 @@ catch (Exception $e) {
 <!-- js -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/scripts.js"></script>
+<!-- sorttable script from https://kryogenix.org/code/browser/sorttable/ -->
+<script src="js/sorttable.js"></script>
 
 
 </body>
