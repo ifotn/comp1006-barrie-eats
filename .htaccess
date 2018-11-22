@@ -1,4 +1,9 @@
 RewriteEngine On
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
-RewriteRule ^.+\.php$ /404.php
+RewriteRule ^404/?$ /barrie-eats/404.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^ http://aws.computerstudi.es/~gc300182472/barrie-eats/404.php [L,R]
+
 ErrorDocument 404 http://aws.computerstudi.es/~gc300182472/barrie-eats/404.php

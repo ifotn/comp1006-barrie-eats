@@ -10,19 +10,80 @@ if (isset($_SESSION['userId'])) {
 
 <h1>Restaurants</h1>
 
+<form method="get">
+    <fieldset class="col-md-12 text-right">
+        <label for="searchName">Search: </label>
+        <input name="searchName" id="searchName" placeholder="Search By Name" />
+        <select name="searchType" id="searchType">
+            <option>-All-</option>
+            <?php
+            // connect
+            require('db.php');
+            $sql = "SELECT * FROM restaurantTypes ORDER BY restaurantType";
+            $cmd = $db->prepare($sql);
+            $cmd->execute();
+            $types = $cmd->fetchAll();
+
+            foreach ($types as $t) {
+                echo "<option>{$t['restaurantType']}</option>";
+            }
+
+            ?>
+        </select>
+        <button class="btn btn-primary">Go</button>
+
+    </fieldset>
+</form>
+
 <?php
 try {
-    // connect
-    require('db.php');
+
     //$db = new PDO('mysql:host=aws.computerstudi.es;dbname=gcxxxxxxxxx', 'gcxxxxxxxxx', 'awspass');
 
 
     // set up query
     $sql = "SELECT * FROM restaurants";
 
+    // search by name if the user is searching
+    $searchName = null;
+    $searchType = null;
+
+    if (isset($_GET['searchName'])) {
+        $searchName = $_GET['searchName'];
+        $sql .= " WHERE name LIKE ?";
+
+        // now check the type
+        if ($_GET['searchType'] != "-All-") {
+            $searchType = $_GET['searchType'];
+            $sql .= " AND restaurantType = ?";
+        }
+    }
+
     // execute & store the result
     $cmd = $db->prepare($sql);
-    $cmd->execute();
+
+    if (isset($searchName)) {
+        $words[0] = "%$searchName%";
+
+        if (isset($searchType)) {
+            $words[1] = $searchType;
+        }
+        $cmd->execute($words);
+
+        if ($searchName == "") {
+            $searchName = "All";
+        }
+
+        if ($searchType == "") {
+            $searchType = "All";
+        }
+
+        echo "<h3>You searched: $searchName / $searchType</h3>";
+    }
+    else {
+        $cmd->execute();
+    }
+
     $restaurants = $cmd->fetchAll();
 
     // start the table
@@ -32,7 +93,6 @@ try {
     if (isset($_SESSION['userId'])) {
         echo '<th>Actions</th>';
     }
-
 
     echo '</thead>';
 
