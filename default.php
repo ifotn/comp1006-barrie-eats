@@ -11,5 +11,4 @@ require('header.php');
             https://github.com/ifotn/comp1006-barrie-eats</a>.</p>
 </main>
 
-</body>
-</html>
+<?php require('footer.php') ?>

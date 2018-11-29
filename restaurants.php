@@ -130,14 +130,5 @@ catch (Exception $e) {
     // show generic error page
     header('location:error.php');
 }
-?>
 
-<!-- js -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/scripts.js"></script>
-<!-- sorttable script from https://kryogenix.org/code/browser/sorttable/ -->
-<script src="js/sorttable.js"></script>
-
-
-</body>
-</html>
+require('footer.php') ?>

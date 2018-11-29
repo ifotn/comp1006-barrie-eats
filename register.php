@@ -23,6 +23,9 @@ require('header.php');
             <label for="confirm" class="col-sm-2">Confirm Password:</label>
             <input type="password" name="confirm" id="confirm" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
         </fieldset>
+
+        <div class="g-recaptcha" data-sitekey="6Le-6X0UAAAAAH0fUVRx8igVyGu_hcu4vRrbFPx2"></div>
+
         <div class="col-sm-offset-2">
             <input type="submit" value="Register" class="btn btn-success" />
         </div>
@@ -30,11 +33,4 @@ require('header.php');
 </main>
 
 
-<script src="js/jquery-3.1.1.min.js"></script>
-
-
-<script src="js/bootstrap.min.js"></script>
-
-
-</body>
-</html>
+<?php require('footer.php') ?>
